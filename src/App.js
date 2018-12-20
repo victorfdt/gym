@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from 'react-bootstrap'
 import logo from './logo.svg';
 import './App.css';
 
@@ -8,6 +9,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
+          <Button bsStyle="primary">Primary</Button>
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
