@@ -2,7 +2,7 @@ import React from 'react'
 import {Row, Col, Button} from 'react-bootstrap'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
-import { loadExercises } from '../actions/exercise'
+import { loadExercises, selectExercise } from '../actions/exercise'
 import ExerciseItem from '../components/ExerciseItem'
 
 class ExerciseList extends React.Component {
@@ -11,16 +11,26 @@ class ExerciseList extends React.Component {
         return this.props.loadExercises;
     }
     
+    handleSelectExercise = (id) => {
+        alert('Id: '+ id);
+        return this.props.selectExercise(id);
+    }
+    
+    
     renderExerciseItems = () => {
         if(this.props.exercise.length === 0){
-            return <li>There is no exercises. Create one.</li>
+            return <li>There is no exercise. Create one.</li>
         } else {
             return this.props.exercise.map((exercise, index) => {
-                return <ExerciseItem key={index} exerciseName={exercise.name} link={exercise.link} description={exercise.description}/>
+                return <ExerciseItem 
+                            key={exercise.id} 
+                            exerciseName={exercise.name} 
+                            link={exercise.link} 
+                            description={exercise.description}
+                            onClick={() => this.handleSelectExercise(exercise.id)}
+                        />
             });
         }
-            
-        
     }
     
     render() {
@@ -39,7 +49,7 @@ class ExerciseList extends React.Component {
                 </Row>
                 
                 <Row className="show-grid">
-                    <Col md={12} className="text-center">
+                    <Col md={12}>
                         <Button bsStyle="primary">Add Exercise</Button>
                     </Col>
                 </Row>
@@ -49,11 +59,11 @@ class ExerciseList extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  exercise: state.exercise
+  exercise: state.exercise.exercisesList
 });
 
 //Actions available inside the props
-const mapDispatchToProps = (dispatch) => bindActionCreators({ loadExercises }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ loadExercises, selectExercise }, dispatch);
 
 //combining two functions
 export default connect(mapStateToProps, mapDispatchToProps)(ExerciseList);

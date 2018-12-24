@@ -4,28 +4,31 @@ export const loadExercises = () => {
     
     return function (dispatch) {
         dispatch(exercisesLoaded())
-        //dispatch(selectedExercise(videos[0]))
     }
-
 }
 
-const exercisesLoaded = (data) => {
+export const selectExercise = (exerciseId) => {
+    return function (dispatch){
+        dispatch(selectedExercise(exerciseId))
+    }
+}
+
+const selectedExercise = (data) => {
     return {
-        type: 'EXERCISES_LOADED',
+        type: 'SELECTED_EXERCISE',
         data: data
+    };
+}
+
+const exercisesLoaded = () => {
+    return {
+        type: 'EXERCISES_LOADED'
     };
 }
 
 const exercisesLoadFail = (data) => {
     return {
         type: 'EXERCISES_LOAD_FAIL',
-    };
-}
-
-export const selectedExercise = (data) => {
-    return {
-        type: 'SELECTED_EXERCISE',
-        data: data
     };
 }
 
