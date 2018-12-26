@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import {Grid, Row, Col} from 'react-bootstrap'
 import ExerciseList from './ExerciseList'
+import ExerciseDetails from '../components/ExerciseDetails'
 
 const Home = (props) => {
   
@@ -14,12 +15,11 @@ const Home = (props) => {
     </Row>
     
       <Row className="show-grid">
-        <Col md={3}>
+        <Col md={2}>
           <ExerciseList />
         </Col>
         <Col md={9}>
-          <p>Description of selected Exercise</p>
-          <p>Create ExerciseDetails component</p>
+          <ExerciseDetails />
         </Col>
       </Row>
     </Grid>

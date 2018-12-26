@@ -7,16 +7,16 @@ export const loadExercises = () => {
     }
 }
 
-export const selectExercise = (exerciseId) => {
+export const selectExercise = (exercise) => {
     return function (dispatch){
-        dispatch(selectedExercise(exerciseId))
+        dispatch(selectedExercise(exercise))
     }
 }
 
-const selectedExercise = (data) => {
+const selectedExercise = (exercise) => {
     return {
         type: 'SELECTED_EXERCISE',
-        data: data
+        data: exercise
     };
 }
 

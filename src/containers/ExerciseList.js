@@ -8,14 +8,12 @@ import ExerciseItem from '../components/ExerciseItem'
 class ExerciseList extends React.Component {
     
     componentWillMount = () => {
-        return this.props.loadExercises;
+        this.props.loadExercises();
     }
     
-    handleSelectExercise = (id) => {
-        alert('Id: '+ id);
-        return this.props.selectExercise(id);
+    handleSelectExercise = (exercise) => {
+        this.props.selectExercise(exercise);
     }
-    
     
     renderExerciseItems = () => {
         if(this.props.exercise.length === 0){
@@ -27,7 +25,7 @@ class ExerciseList extends React.Component {
                             exerciseName={exercise.name} 
                             link={exercise.link} 
                             description={exercise.description}
-                            onClick={() => this.handleSelectExercise(exercise.id)}
+                            onClick={() => this.handleSelectExercise(exercise)}
                         />
             });
         }
