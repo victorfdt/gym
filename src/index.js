@@ -15,9 +15,7 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 //Redux is available in all components
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
-            <Home />
-        </BrowserRouter>
+        <Home />
     </Provider>,
     document.getElementById('root')
 );

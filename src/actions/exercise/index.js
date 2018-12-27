@@ -1,19 +1,14 @@
 //Creating action
 export const loadExercises = () => {
     //When you return a function inside an action, redux thunk will take this action.
+    //Only for side effects
     
     return function (dispatch) {
         dispatch(exercisesLoaded())
     }
 }
 
-export const selectExercise = (exercise) => {
-    return function (dispatch){
-        dispatch(selectedExercise(exercise))
-    }
-}
-
-const selectedExercise = (exercise) => {
+export const selectedExercise = (exercise) => {
     return {
         type: 'SELECTED_EXERCISE',
         data: exercise

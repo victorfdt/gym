@@ -7,45 +7,47 @@ class ExerciseDetails extends React.Component {
     
     render() {
         let content;
-        if(this.props.exercise){
+        if(this.props.exercise.id){
             console.log(this.props.exercise);
-            content = <div>
+            content = 
+            <div>
                 <Row className="show-grid">
-                        <Col md={2}>
-                            <span>Name:</span>
-                        </Col>
-                        <Col md={9}>
-                            <span>{this.props.exercise.name}</span>
-                        </Col>
-                    </Row>
-                    
-                    <Row className="show-grid">
-                        <Col md={2}>
-                            <span>Description:</span>
-                        </Col>
-                        <Col md={9}>
-                            <span>{this.props.exercise.description}</span>
-                        </Col>
-                    </Row>
-                    
-                    <Row className="show-grid">
-                        <Col md={2}>
-                            <span>Link:</span>
-                        </Col>
-                        <Col md={9}>
-                            <span>{this.props.exercise.link}</span>
-                        </Col>
-                    </Row>
+                    <Col md={2}>
+                        <span>Name:</span>
+                    </Col>
+                    <Col md={9}>
+                        <span>{this.props.exercise.name}</span>
+                    </Col>
+                </Row>
+                
+                <Row className="show-grid">
+                    <Col md={2}>
+                        <span>Description:</span>
+                    </Col>
+                    <Col md={9}>
+                        <span>{this.props.exercise.description}</span>
+                    </Col>
+                </Row>
+                
+                <Row className="show-grid">
+                    <Col md={2}>
+                        <span>Link:</span>
+                    </Col>
+                    <Col md={9}>
+                        <span>{this.props.exercise.link}</span>
+                    </Col>
+                </Row>
             </div>
         } else {
-            content = <div><Row className="show-grid">
-                <Col md={10}>
-                    <span>Select an exercise.</span>
-                </Col>
-            </Row>
+            content = 
+            <div>
+                <Row className="show-grid">
+                    <Col md={10}>
+                        <span>Select an exercise.</span>
+                    </Col>
+                </Row>
             </div>
         }
-        
         
         return(
             <div>

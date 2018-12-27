@@ -2,17 +2,17 @@ import React from 'react'
 import {Row, Col, Button} from 'react-bootstrap'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
-import { loadExercises, selectExercise } from '../actions/exercise'
+import { loadExercises, selectedExercise } from '../actions/exercise'
 import ExerciseItem from '../components/ExerciseItem'
 
 class ExerciseList extends React.Component {
     
     componentWillMount = () => {
-        this.props.loadExercises();
+        //this.props.loadExercises();
     }
     
     handleSelectExercise = (exercise) => {
-        this.props.selectExercise(exercise);
+        this.props.selectedExercise(exercise);
     }
     
     renderExerciseItems = () => {
@@ -61,7 +61,7 @@ const mapStateToProps = (state) => ({
 });
 
 //Actions available inside the props
-const mapDispatchToProps = (dispatch) => bindActionCreators({ loadExercises, selectExercise }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ loadExercises, selectedExercise }, dispatch);
 
 //combining two functions
 export default connect(mapStateToProps, mapDispatchToProps)(ExerciseList);
