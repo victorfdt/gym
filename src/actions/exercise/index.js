@@ -8,6 +8,16 @@ export const loadExercises = () => {
     }
 }
 
+export const createExercise = (exercise) => {
+    
+    //Simulating the calling of an API that would store the exercise in the database
+    return function (dispatch) {
+        setTimeout(() =>{
+            dispatch(createdExercise(exercise))
+        }, 2000)
+    }
+}
+
 export const selectedExercise = (exercise) => {
     return {
         type: 'SELECTED_EXERCISE',
@@ -27,6 +37,9 @@ const exercisesLoadFail = (data) => {
     };
 }
 
-
-
-
+const createdExercise = (exercise) => {
+    return {
+        type: 'EXERCISE_CREATED',
+        data: exercise
+    };
+}
