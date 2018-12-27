@@ -1,5 +1,5 @@
 import React from 'react'
-import {Row, Col, Button} from 'react-bootstrap'
+import {Row, Col, Button, Modal} from 'react-bootstrap'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { loadExercises, selectedExercise } from '../actions/exercise'
@@ -7,12 +7,33 @@ import ExerciseItem from '../components/ExerciseItem'
 
 class ExerciseList extends React.Component {
     
+    constructor(props){
+        super(props);
+        
+        //Handle modal
+        //TODO Why use bind? What is context in the constructor??
+        this.handleShow = this.handleShow.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        
+        this.state = {
+          show: false
+        };
+    }
+    
     componentWillMount = () => {
         //this.props.loadExercises();
     }
     
     handleSelectExercise = (exercise) => {
         this.props.selectedExercise(exercise);
+    }
+    
+    handleClose() {
+        this.setState({ show: false });
+    }
+    
+    handleShow() {
+        this.setState({ show: true });
     }
     
     renderExerciseItems = () => {
@@ -48,9 +69,23 @@ class ExerciseList extends React.Component {
                 
                 <Row className="show-grid">
                     <Col md={12}>
-                        <Button bsStyle="primary">Add Exercise</Button>
+                        <Button bsStyle="primary" onClick={this.handleShow}>Add Exercise</Button>
                     </Col>
                 </Row>
+                
+                <Modal show={this.state.show} onHide={this.handleClose}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Adding exercise</Modal.Title>
+                  </Modal.Header>
+                  
+                  <Modal.Body>
+                    <h4>Text in a modal</h4>
+                  </Modal.Body>
+                  
+                  <Modal.Footer>
+                    <Button onClick={this.handleClose}>Close</Button>
+                  </Modal.Footer>
+                </Modal>
             </div>
         );
     }
