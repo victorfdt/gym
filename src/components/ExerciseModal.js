@@ -90,9 +90,9 @@ class ExerciseModal extends React.Component {
               //Creating a new object
               let newExercise = {};
               newExercise.id = Math.floor((Math.random() * 100) + 1);
-              newExercise.name = event.target.exerciseName.value;
-              newExercise.description = event.target.exerciseDescription.value;
-              newExercise.link = event.target.exerciseLink.value;
+              newExercise.name = name;
+              newExercise.description = description;
+              newExercise.link = link;
               
               //Calling the action
               console.log(newExercise);
