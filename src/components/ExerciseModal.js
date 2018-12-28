@@ -47,62 +47,59 @@ class ExerciseModal extends React.Component {
         let link = event.target.exerciseLink.value;
         let hasError = false;
         
-        //Name
-        if(name === ""){
-          debugger
-          hasError = true;
-          this.setState({exerciseName: 'error'});
-         
-          let hasMessage = this.state.errorMessages.filter(function(message){
-            return message === 'Insert a name'
-          });
-          
-          if(!hasMessage){
-            let errorMsg = this.state.errorMessages;
-            errorMsg.push("Insert a name");
-            this.setState({ 
+        /*The setState is not asynchronous. So, this approach guarantees 
+        that the logic inside the function will be executed only after the setState.*/
+        this.setState({errorMessages: []}, function () {
+            //Name
+            if(name === ""){
+              hasError = true;
+              this.setState({exerciseName: 'error'});
+             
+              let errorMsg = this.state.errorMessages;
+              errorMsg.push("Insert a name");
+              this.setState({
               errorMessages:errorMsg
-            });
-          }
-        }
-        
-        //Link
-        if(link === ""){
-          hasError = true;
-          this.setState({exerciseLink: 'error'});
-          
-          let errorMsg = this.state.errorMessages
-          errorMsg.push("Insert a link");
-          this.setState({ 
-            errorMessages:errorMsg
-          });
-        }
-        
-        //Description
-        if(description === ""){
-          hasError = true;
-          this.setState({exerciseDescription: 'error'});
-          
-          let errorMsg = this.state.errorMessages;
-          errorMsg.push("Insert a description");
-          this.setState({ 
-            errorMessages:errorMsg
-          });
-        }
-        
-        if(!hasError){
-          //Creating a new object
-          let newExercise = {};
-          newExercise.id = Math.floor((Math.random() * 100) + 1);
-          newExercise.name = event.target.exerciseName.value;
-          newExercise.description = event.target.exerciseDescription.value;
-          newExercise.link = event.target.exerciseLink.value;
-          
-          //Calling the action
-          console.log(newExercise);
-          this.props.createExercise(newExercise);
-          this.handleClose();
-        }
+                });
+            }
+            
+            //Link
+            if(link === ""){
+              hasError = true;
+              this.setState({exerciseLink: 'error'});
+              
+              let errorMsg = this.state.errorMessages
+              errorMsg.push("Insert a link");
+              this.setState({ 
+                errorMessages:errorMsg
+              });
+            }
+            
+            //Description
+            if(description === ""){
+              hasError = true;
+              this.setState({exerciseDescription: 'error'});
+              
+              let errorMsg = this.state.errorMessages;
+              errorMsg.push("Insert a description");
+              this.setState({ 
+                errorMessages:errorMsg
+              });
+            }
+            
+            if(!hasError){
+              //Creating a new object
+              let newExercise = {};
+              newExercise.id = Math.floor((Math.random() * 100) + 1);
+              newExercise.name = event.target.exerciseName.value;
+              newExercise.description = event.target.exerciseDescription.value;
+              newExercise.link = event.target.exerciseLink.value;
+              
+              //Calling the action
+              console.log(newExercise);
+              this.props.createExercise(newExercise);
+              this.handleClose();
+            }
+        });
     }
     
     renderForm = () => {
