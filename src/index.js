@@ -3,7 +3,6 @@ import { createStore,  applyMiddleware} from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from 'react-router-dom'
 import './index.css';
 import Home from './containers/Home';
 import * as serviceWorker from './serviceWorker';

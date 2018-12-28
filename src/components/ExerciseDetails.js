@@ -4,7 +4,6 @@ import {Row, Col, Panel} from 'react-bootstrap'
 
 class ExerciseDetails extends React.Component {
     
-    
     render() {
         let content;
         if(this.props.exercise.id){
@@ -34,7 +33,7 @@ class ExerciseDetails extends React.Component {
                         <span>Link:</span>
                     </Col>
                     <Col md={9}>
-                        <span>{this.props.exercise.link}</span>
+                        <a href={this.props.exercise.link}>{this.props.exercise.link}</a>
                     </Col>
                 </Row>
             </div>
