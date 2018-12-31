@@ -1,5 +1,5 @@
 import React from 'react'
-import {Row, Col, Button} from 'react-bootstrap'
+import {Row, Col, Button, Panel} from 'react-bootstrap'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { loadExercises, selectedExercise } from '../actions/exercise'
@@ -48,19 +48,22 @@ class ExerciseList extends React.Component {
             <div>
                 <Row className="show-grid">
                     <Col md={12}>
-                        <h4>Exercises list</h4>
-                    </Col>
-                </Row>
-                
-                <Row className="show-grid">
-                    <Col md={12}>
-                        <ul>{this.renderExerciseItems()}</ul>
-                    </Col>
-                </Row>
-                
-                <Row className="show-grid">
-                    <Col md={12}>
-                        <Button bsStyle="primary" onClick={this.showModal}>Add Exercise</Button>
+                        <Panel bsStyle="info">
+                            <Panel.Heading>Exercises list</Panel.Heading>
+                            <Panel.Body>
+                                <Row className="show-grid">
+                                    <Col md={12}>
+                                        <ul>{this.renderExerciseItems()}</ul>
+                                    </Col>
+                                </Row>
+                                
+                                <Row className="show-grid">
+                                    <Col md={12} className="text-center">
+                                        <Button bsStyle="primary" onClick={this.showModal} bsSize="small">Add Exercise</Button>
+                                    </Col>
+                                </Row>
+                            </Panel.Body>
+                        </Panel>
                     </Col>
                 </Row>
                 

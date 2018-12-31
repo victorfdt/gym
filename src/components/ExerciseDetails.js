@@ -1,13 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {Row, Col, Panel} from 'react-bootstrap'
+import { bindActionCreators } from 'redux';
+import {Row, Col, Panel, Button} from 'react-bootstrap'
+import {deleteExercise} from '../actions/exercise'
 
 class ExerciseDetails extends React.Component {
+    
+    handleOnClick = (id) => {
+        this.props.deleteExercise(id);        
+    }
     
     render() {
         let content;
         if(this.props.exercise.id){
-            console.log(this.props.exercise);
             content = 
             <div>
                 <Row className="show-grid">
@@ -34,6 +39,12 @@ class ExerciseDetails extends React.Component {
                     </Col>
                     <Col md={9}>
                         <a href={this.props.exercise.link}>{this.props.exercise.link}</a>
+                    </Col>
+                </Row>
+                <br/>
+                <Row className="show-grid">
+                    <Col md={12}>
+                        <Button bsStyle="danger" bsSize="small" onClick={this.handleOnClick(this.props.exercise.id)}>Remove</Button>
                     </Col>
                 </Row>
             </div>
@@ -65,4 +76,6 @@ const mapStateToProps = (state) => ({
   exercise: state.exercise.selectedExercise
 });
 
-export default connect(mapStateToProps, null)(ExerciseDetails);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ deleteExercise }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExerciseDetails);

@@ -47,9 +47,16 @@ class ExerciseModal extends React.Component {
         let link = event.target.exerciseLink.value;
         let hasError = false;
         
+        const initialState = {
+          errorMessages: [],
+          exerciseName: null,
+          exerciseLink: null,
+          exerciseDescription: null
+        };
+        
         /*The setState is not asynchronous. So, this approach guarantees 
         that the logic inside the function will be executed only after the setState.*/
-        this.setState({errorMessages: []}, function () {
+        this.setState(initialState, function () {
             //Name
             if(name === ""){
               hasError = true;

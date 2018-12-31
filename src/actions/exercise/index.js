@@ -18,10 +18,27 @@ export const createExercise = (exercise) => {
     }
 }
 
+export const deleteExercise = (id) => {
+    
+    //Simulating the calling of an API that would store the exercise in the database
+    return function (dispatch) {
+        setTimeout(() =>{
+            dispatch(deletedExercise(id))
+        }, 2000)
+    }
+}
+
 export const selectedExercise = (exercise) => {
     return {
         type: 'SELECTED_EXERCISE',
         data: exercise
+    };
+}
+
+export const deletedExercise = (id) => {
+    return {
+      type: 'DELETED_EXERCISE',
+      data: id
     };
 }
 
