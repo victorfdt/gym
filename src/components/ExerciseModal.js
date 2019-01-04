@@ -153,9 +153,11 @@ class ExerciseModal extends React.Component {
             </Panel.Heading>
             <Panel.Body>
               <ul>
-              {this.state.errorMessages.map((message, index) => {
-              return <li key={index}>{message}</li>
-            })}
+              {
+                this.state.errorMessages.map((message, index) => {
+                  return <li key={index}>{message}</li>
+                })
+              }
               </ul>
             </Panel.Body>
           </Panel>;
@@ -166,7 +168,7 @@ class ExerciseModal extends React.Component {
         return(
             <Modal show={this.props.showModal} onHide={this.handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>Adding exercise</Modal.Title>
+                <Modal.Title>Create exercise</Modal.Title>
               </Modal.Header>
               
               <Modal.Body>

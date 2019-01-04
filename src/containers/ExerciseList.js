@@ -11,7 +11,7 @@ class ExerciseList extends React.Component {
         super(props);
         
         this.state = {
-          showModal: false
+          showModal: false,
         };
     }
 
@@ -53,13 +53,13 @@ class ExerciseList extends React.Component {
                             <Panel.Body>
                                 <Row className="show-grid">
                                     <Col md={12}>
-                                        <ul>{this.renderExerciseItems()}</ul>
+                                        <ul className="exerciseList">{this.renderExerciseItems()}</ul>
                                     </Col>
                                 </Row>
-                                
+                                <br/>
                                 <Row className="show-grid">
                                     <Col md={12} className="text-center">
-                                        <Button bsStyle="primary" onClick={this.showModal} bsSize="small">Add Exercise</Button>
+                                        <Button bsStyle="primary" onClick={this.showModal} bsSize="small">Create Exercise</Button>
                                     </Col>
                                 </Row>
                             </Panel.Body>

@@ -3,11 +3,40 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import {Row, Col, Panel, Button} from 'react-bootstrap'
 import {deleteExercise} from '../actions/exercise'
+import ExerciseDeleteModal from './ExerciseDeleteModal'
 
 class ExerciseDetails extends React.Component {
     
-    handleOnClick = (id) => {
-        this.props.deleteExercise(id);        
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+          showModal: false,
+          exercise: {}
+        };
+    }
+    
+    showModal = () => {
+        this.setState({
+            showModal: true
+        });
+    }
+    
+    closeModal = () => {
+        this.setState({
+            showModal: false
+        });
+    }
+    
+    handleOnClick = (currentExercise) => {
+        this.setState({exercise: currentExercise}, function() {
+            this.showModal();
+        });
+    }
+    
+    deleteExercise = (id) => {
+        this.props.deleteExercise(id);
+        this.closeModal();
     }
     
     render() {
@@ -38,13 +67,13 @@ class ExerciseDetails extends React.Component {
                         <span>Link:</span>
                     </Col>
                     <Col md={9}>
-                        <a href={this.props.exercise.link}>{this.props.exercise.link}</a>
+                        <a href={this.props.exercise.link} target="_blank">{this.props.exercise.link}</a>
                     </Col>
                 </Row>
                 <br/>
                 <Row className="show-grid">
                     <Col md={12}>
-                        <Button bsStyle="danger" bsSize="small" onClick={this.handleOnClick(this.props.exercise.id)}>Remove</Button>
+                        <Button bsStyle="danger" bsSize="small" onClick={() => this.handleOnClick(this.props.exercise)}>Remove</Button>
                     </Col>
                 </Row>
             </div>
@@ -67,6 +96,13 @@ class ExerciseDetails extends React.Component {
                         {content}
                     </Panel.Body>
                 </Panel>
+                
+                <ExerciseDeleteModal 
+                    showModal={this.state.showModal} 
+                    closeModal={this.closeModal}
+                    exercise={this.state.exercise}
+                    deleteExercise={() => this.deleteExercise(this.state.exercise.id)}
+                />
             </div>
         );
     }
