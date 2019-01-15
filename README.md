@@ -1,3 +1,7 @@
+## About
+   Project develop using React focused to practice and improve the knowleadge of this JavaScript library.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
